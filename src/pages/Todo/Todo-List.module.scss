@@ -1,0 +1,35 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+.form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.input {
+    flex: 1;
+    padding: 8px 10px;
+}
+.addBtn,
+.deleteBtn {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.list {
+    display: grid;
+    gap: 8px;
+}
+.todoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+.empty {
+    color: #777;
+    font-style: italic;
+}

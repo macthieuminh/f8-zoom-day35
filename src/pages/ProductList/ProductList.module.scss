@@ -1,0 +1,308 @@
+.wrapper {
+    --border: #e5e5e5;
+    --text: #111;
+    --muted: #666;
+    --bg: #fff;
+    --card: #fff;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    --dur: 0.25s;
+
+    display: flex;
+    flex-direction: column;
+    
+    color: var(--text);
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.loading {
+    padding: 24px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+}
+
+.heading {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.viewToggle {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.toggleBtn {
+    background: transparent;
+    border: 0;
+    padding: 8px 14px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.toggleBtn:hover {
+    background: #f7f7f7;
+}
+.active {
+    background: #111;
+    color: #fff;
+}
+
+.grid,
+.list {
+    transition: all 0.2s ease;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    opacity: 0;
+    animation: cardEnter 0.4s ease-out both;
+    animation-delay: calc(var(--i, 0) * 40ms);
+
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+}
+.label {
+    font-weight: 600;
+    color: #000;
+}
+.value {
+    font-variant-numeric: tabular-nums;
+}
+
+.title {
+    margin: 2px 0 0;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.25;
+    text-transform: capitalize;
+    letter-spacing: 0.2px;
+    padding: 6px 8px;
+    border-left: 4px solid #000;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.body {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.actions {
+    margin-top: 4px;
+}
+.btn {
+    appearance: none;
+    border: 1px solid #111;
+    background: #111;
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+.btn:active {
+    transform: translateY(1px);
+}
+
+@keyframes backdropIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes backdropOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+@keyframes popOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+}
+
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.5);
+    display: grid;
+    place-items: center;
+    z-index: 50;
+    padding: 16px;
+
+    animation: backdropIn var(--dur) ease-out both;
+}
+.modalBackdrop.closing {
+    animation: backdropOut var(--dur) ease-in both;
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    animation: popIn var(--dur) ease-out both;
+}
+.modal.closing {
+    animation: popOut var(--dur) ease-in both;
+}
+
+.modalClose {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 22px;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.2s ease;
+}
+.modalClose:hover {
+    transform: scale(1.04);
+    box-shadow: var(--shadow);
+}
+
+.modalHeader {
+    padding: 18px 20px 8px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.badge {
+    align-self: flex-start;
+    font-size: 12px;
+    padding: 4px 8px;
+    border: 1px solid #000;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+}
+.modalTitle {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+.modalBody {
+    padding: 18px 20px;
+}
+.modalText {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #222;
+    white-space: pre-wrap;
+}
+.modalFooter {
+    padding: 14px 20px 18px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
