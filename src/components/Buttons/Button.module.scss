@@ -1,0 +1,57 @@
+.wrapper {
+    border: 1px solid #ccc;
+    padding: 4px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 0 10px;
+    background-color: #fff;
+}
+.primary {
+    color: #fff;
+    background: #000;
+}
+.rounded {
+    border-radius: 999px;
+}
+.bordered {
+    color: #222;
+    border-color: currentColor;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 50%;
+}
+.disabled:hover {
+    background-color: unset !important;
+    color: unset !important;
+}
+.loading {
+    position: relative;
+    visibility: hidden;
+}
+.loading::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../assets/icon/loading-icon.svg");
+    visibility: visible;
+    translate: -50% -50%;
+}
+
+// Size
+.small {
+    font-size: 1.2rem;
+    padding: 2px 12px;
+}
+.medium {
+    font-size: 1.5rem;
+    padding: 4px 16px;
+}
+.large {
+    font-size: 1.8rem;
+    padding: 4px 16px;
+}

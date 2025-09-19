@@ -36,17 +36,13 @@ const navItems = [
         title: "Buttons",
     },
 ]
-function Navigation() {
+export default function Navigation() {
     return (
-        <nav className={styles.wrapper}>
-            <ul>
+        <nav className={styles.nav}>
+            <ul className={styles.nav__list}>
                 {navItems.map((item, index) => (
-                    <li key={index}>
-                        <NavLink
-                            className={({ isActive }) => {
-                                isActive ? styles.active : ""
-                            }}
-                            to={item.to}>
+                    <li className={styles.nav__item} key={index}>
+                        <NavLink className={styles.nav__item__link} to={item.to}>
                             {item.title}
                         </NavLink>
                     </li>
@@ -55,5 +51,3 @@ function Navigation() {
         </nav>
     )
 }
-
-export default Navigation

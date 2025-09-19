@@ -1,46 +1,37 @@
-import PropTypes from "prop-types"
-import clsx from "clsx"
+import Button from "../../components/Buttons"
 import styles from "./Button.module.scss"
 
-export default function Button({
-    primary = false,
-    rounded = false,
-    bordered = false,
-    disabled = false,
-    loading = false,
-    children,
-    size = "medium",
-    href,
-    onClick,
-    className,
-    ...passProps
-}) {
-    const classNames = clsx(styles.wrapper, className, styles[size], {
-        [styles.primary]: primary,
-        [styles.rounded]: rounded,
-        [styles.bordered]: bordered,
-        [styles.disabled]: disabled,
-        [styles.loading]: loading,
-    })
-    let Component = href ? "a" : "button"
+export default function App() {
     return (
-        <Component
-            {...passProps}
-            href={href}
-            className={clsx(classNames)}
-            onClick={disabled || loading ? null : onClick}>
-            {children}
-        </Component>
+        <>
+            <section className={styles.section}>
+                <Button>Click me</Button>
+                <Button primary>Primary Button</Button>
+                <Button href="https://google.com" target="_blank">
+                    Go to Google
+                </Button>
+                <Button size="small">Small</Button>
+                <Button size="medium">Medium</Button>
+                <Button size="large">Large</Button>
+                <Button bordered>Bordered</Button>
+                <Button rounded>Rounded</Button>
+                <Button primary rounded>
+                    Primary Rounded
+                </Button>
+                <Button onClick={() => alert("Clicked!")}>Click Alert</Button>
+                <Button disabled onClick={() => alert("Should not show")}>
+                    Disabled Button
+                </Button>
+                <Button loading onClick={() => console.log("Should not log")}>
+                    Loading Button
+                </Button>
+                <Button className={styles.customBtn} primary>
+                    Custom Styled
+                </Button>
+                <Button primary>
+                    <span>📧</span> Send Email
+                </Button>
+            </section>
+        </>
     )
-}
-
-Button.propTypes = {
-    children: PropTypes.node.isRequired,
-    primary: PropTypes.bool,
-    rounded: PropTypes.bool,
-    bordered: PropTypes.bool,
-    disabled: PropTypes.bool,
-    loading: PropTypes.bool,
-    onClick: PropTypes.func,
-    href: PropTypes.string,
 }
